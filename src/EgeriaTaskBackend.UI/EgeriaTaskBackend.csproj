@@ -22,4 +22,7 @@
     <ProjectReference Include="..\EgeriaTaskBackend.Infrastructure\EgeriaTaskBackend.Infrastructure.csproj" />
   </ItemGroup>
 
+  
+ 
+
 </Project>
