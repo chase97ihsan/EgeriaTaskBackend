@@ -42,7 +42,7 @@ namespace EgeriaTaskBackend.Business.Orders
 
         public async Task<List<OrderDto>> GetOrders()
         {
-            var ordersFromDb = _egeriaContext.Orders.ToList(); //.Include(x=>x.customer)
+            var ordersFromDb = _egeriaContext.Orders.Include((O)=>O.customer).ToList(); //.Include(x=>x.customer)
             var ordersMapped = mapper.Map<List<OrderDto>>(ordersFromDb);
             return ordersMapped;
         }
@@ -52,7 +52,7 @@ namespace EgeriaTaskBackend.Business.Orders
 
             var ordersFromDb = await _egeriaContext.Orders
         .Include(x => x.customer)
-        .Where(x => x.customer.Name.Replace(" ", "").Equals(customerName.Replace(" ", "").ToLower()))
+        .Where(x => x.customer.Name.Replace("", "").Equals(customerName.Replace("", "")))
         .ToListAsync();
             var ordersMapped = mapper.Map<List<OrderDto>>(ordersFromDb);
             return ordersMapped;

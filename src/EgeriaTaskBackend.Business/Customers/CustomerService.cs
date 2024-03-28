@@ -27,6 +27,7 @@ namespace EgeriaTaskBackend.Business.Customers
         {
             var customersFromDb = _egeriaContext.Customers.ToList();  //.Include(x => x.Orders)
             var customersMapped = mapper.Map<List<CustomerDto>>(customersFromDb);
+
             return customersMapped;
         }
     }

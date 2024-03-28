@@ -13,9 +13,9 @@ namespace EgeriaTaskBackend.Domain.Dto
     {
         public string OrderNo { get; set; } = null!;
 
-        public string CustomerNo { get; set; }
+        public string CustomerName { get; set; }
 
-        public DateTime DateEntered { get; set; }
+        public string DateEntered { get; set; }
 
         public string State { get; set; } = null!;
 
@@ -27,7 +27,9 @@ namespace EgeriaTaskBackend.Domain.Dto
     {
         public OrderDtoProfile()
         {
-          CreateMap<Order, OrderDto>()
+          CreateMap<Order, OrderDto>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(source => source.customer.Name))
+                 .ForMember(dest => dest.DateEntered, opt => opt.MapFrom(source => source.DateEntered.ToString("yyyy-MM-dd HH:mm:ss")))
+
           .ReverseMap();
            
         }
